@@ -1,0 +1,52 @@
+{% extends "persons/sidebar.html" %} {% load static %} {% block title %} View
+Persons {% endblock %} {% block body %}
+<div class="pusher">
+  <div class="main-content">
+    <div class="ui grid stackable padded">
+      <div class="column">
+        <table class="ui green celled padded table">
+          <thead>
+            <tr>
+              <th></th>
+              <th colspan="5">
+                <a href="{% url 'persons:addPersons' %}" class="ui left floated small primary labeled icon button">
+                  <i class="user icon"></i> Add User
+                </a>
+                {% comment %} <div class="ui small button">Approve</div>
+                <div class="ui small disabled button">Approve All</div> {% endcomment %}
+              </th>
+            </tr>
+            <th class="single line">#</th>
+            <th class="single line">First Name</th>
+            <th class="single line">Last Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </thead>
+          <tbody>
+            {% for persons in object_list %}
+            <tr>
+              <td class="collapsing">{{forloop.counter}}</td>
+              <td class="collapsing">{{ persons.first_name }}</td>
+              <td class="collapsing">{{ persons.last_name }}</td>
+              <td>{{ persons.email }}</td>
+              <td class="right aligned collapsing">
+                <a
+                  href="{% url 'persons:editPersons' persons.id_person %}"
+                  class="ui inverted green button"
+                  >Edit</a
+                >
+                <a
+                  href="{% url 'persons:deletePersons' persons.id_person %}"
+                  class="ui inverted red button"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
