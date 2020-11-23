@@ -1,0 +1,61 @@
+{% extends "products/sidebar.html" %}
+
+{% load static %}
+
+{% block title %} View Products {% endblock %}
+
+{% block body %}
+<div class="pusher">
+  <div class="main-content">
+    <div class="ui grid stackable padded">
+      <div class="column">
+        <table class="ui green celled padded table">
+          <thead>
+            <tr>
+              <th></th>
+              <th colspan="6">
+                <a href="{% url 'products:addProducts' %}" class="ui left floated small primary labeled icon button">
+                  <i class="user icon"></i> Add Products
+                </a>
+                {% comment %} <div class="ui small button">Approve</div>
+                <div class="ui small disabled button">Approve All</div> {% endcomment %}
+              </th>
+            </tr>
+            <th class="single line">#</th>
+            <th class="single line">Products</th>
+            <th class="single line">Description</th>
+            <th>Stock</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>Actions</th>
+          </thead>
+          <tbody>
+            {% for products in object_list %}
+            <tr>
+              <td class="collapsing">{{forloop.counter}}</td>
+              <td class="collapsing">{{ products.name_product }}</td>
+              <td class="collapsing">{{ products.description }}</td>
+              <td>{{ products.stock }}</td>
+              <td>{{ products.created }}</td>
+              <td>{{ products.updated }}</td>
+              <td class="right aligned collapsing">
+                <a
+                  href="{% url 'products:editProducts' products.id_product %}"
+                  class="ui inverted green button"
+                  >Edit</a
+                >
+                <a
+                  href="{% url 'products:deleteProducts' products.id_product %}"
+                  class="ui inverted red button"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

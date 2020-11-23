@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from django.contrib import messages
 from .models import Persons # Importamos el modelo de personsa
 from .forms import PersonForm # Importamos el modelo de personsa
 

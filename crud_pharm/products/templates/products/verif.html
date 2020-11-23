@@ -1,0 +1,31 @@
+{% extends "products/sidebar.html" %} {% load static %}
+
+{% block title %} Virificaction of Delete Products {% endblock %} {% block body %}
+<div class="pusher">
+  <div class="main-content">
+    <div class="ui grid stackable padded">
+      <div class="ui two column centered grid">
+        <div class="four column centered row">
+          <div class="column"></div>
+          <div class="column"></div>
+        </div>
+        <div class="column">
+          <form class="ui form" method="POST">
+            {% csrf_token %}
+            <h4 class="ui dividing header">Delete Information of {{ object }}?</h4>
+            <div class="ui inverted segment">
+              <div class="ui inverted form">
+                <a href="{% url 'products:viewProducts'%}" class="ui green submit button">Cancel</a> <button type="submit" class="ui red submit button">Delete</button> 
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="four column centered row">
+          <div class="column"></div>
+          <div class="column"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
